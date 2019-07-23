@@ -10,7 +10,8 @@
 |  redis-slave1     |  172.16.0.112|22632-6379    | slave     |
 |  redis-slave2     |  172.16.0.113|22633-6379    | slave     |
 
-已手动创建了容器自定义网段 sentinelnetwork 172.16.0.0/16
-基于Dockerfile构建好了redis镜像 redis-base-image
-6个节点的redis配置文件提前规划好了，使用容器挂载共享宿主机config目录下使用配置文件
-关于手动搭建环境的blog地址 https://blog.csdn.net/Jo_Andy/article/details/96839254
+##### 已手动创建了容器自定义网段 sentinelnetwork 172.16.0.0/16
+##### 基于Dockerfile构建好了redis镜像 redis-base-image
+##### 6个节点的redis配置文件提前规划好了，使用容器挂载共享宿主机config目录下使用配置文件
+##### 关于手动搭建环境的blog地址[https://blog.csdn.net/Jo_Andy/article/details/96839254](https://blog.csdn.net/Jo_Andy/article/details/96839254)
+ 
