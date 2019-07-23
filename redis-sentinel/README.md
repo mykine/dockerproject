@@ -1,4 +1,4 @@
-运用docker-compose编排包含6个容器的项目:3哨兵监控1主2从读写分离redis高可用架构
+##### 运用docker-compose编排包含6个容器的项目:3哨兵监控1主2从读写分离redis高可用架构
 
 docker部署方案
 |容器名称| 容器IP |端口映射| Redis服务模式 |
