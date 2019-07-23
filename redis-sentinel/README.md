@@ -1,6 +1,6 @@
 ##### 运用docker-compose编排包含6个容器的项目:3哨兵监控1主2从读写分离redis高可用架构
 
-docker部署方案
+#### 设计docker部署方案
 |容器名称| 容器IP |端口映射| Redis服务模式 |
 |--|--|--|--|
 |  redis-sentinel1 |  172.16.0.101|22531-26379  |sentinel  |
