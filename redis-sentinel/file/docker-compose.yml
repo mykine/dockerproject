@@ -1,0 +1,93 @@
+version: '3'
+#服务(也就是容器)
+service:
+	redis-master:
+		image:redis-base-image
+		container_name:redis-master
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.111
+		ports:
+			- "22631:6379"
+		expose:
+			- 6379
+		tty: true
+		privileged: true
+		command: redis-server /config/redis-master.conf &
+	redis-slave1:
+		image:redis-base-image
+		container_name:redis-slave1
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.112
+		ports:
+			- "22632:6379"
+		expose:
+			- 6379
+		tty: true
+		privileged: true
+		command: redis-server /config/redis-slave1.conf &	
+	redis-slave2:
+		image:redis-base-image
+		container_name:redis-slave2
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.113
+		ports:
+			- "22633:6379"
+		expose:
+			- 6379
+		tty: true
+		privileged: true
+		command: redis-server /config/redis-slave2.conf &
+	redis-sentinel1:
+		image:redis-base-image
+		container_name:redis-sentinel1
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.101
+		ports:
+			- "22531:26379"
+		expose:
+			- 26379
+		tty: true
+		privileged: true
+		command: redis-sentinel /etc/redis-sentinel1.conf &	
+	redis-sentinel2:
+		image:redis-base-image
+		container_name:redis-sentinel2
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.102
+		ports:
+			- "22532:26379"
+		expose:
+			- 26379
+		tty: true
+		privileged: true
+		command: redis-sentinel /etc/redis-sentinel2.conf &	
+	redis-sentinel3:
+		image:redis-base-image
+		container_name:redis-sentinel3
+		volumes: ["/usr/docker/mygitprojects/redis-sentinel/config:/config"]
+		working_dir: /config
+		networks:
+			sentinelnetwork:
+				ipv4_address:172.16.0.103
+		ports:
+			- "22533:26379"
+		expose:
+			- 26379
+		tty: true
+		privileged: true
+		command: redis-sentinel /etc/redis-sentinel3.conf &	
