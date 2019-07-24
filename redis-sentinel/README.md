@@ -17,3 +17,4 @@
  
 ##### ps:注意事项:
  ###### 1.编写yml文件时，遵循类似树状层级型配置参数，除了类似python语法缩进对齐格式外，叶子型参数冒号:后面要多一个空格，否则会报错"ERROR: yaml.scanner.ScannerError: mapping values are not allowed here"
+ ###### 2.创建项目环境时运行命令 docker-compose up –d ，其中-d表示后台运行

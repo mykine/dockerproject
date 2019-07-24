@@ -14,7 +14,7 @@ services:
       - 6379
     tty: true
     privileged: true
-    command: redis-server /config/redis-master.conf &
+    command: redis-server /config/redis-master.conf
     
   redis-slave1:
     image: redis-base-image
@@ -30,7 +30,7 @@ services:
       - 6379
     tty: true
     privileged: true
-    command: redis-server /config/redis-slave1.conf &  
+    command: redis-server /config/redis-slave1.conf  
     
   redis-slave2:
     image: redis-base-image
@@ -46,7 +46,7 @@ services:
       - 6379
     tty: true
     privileged: true
-    command: redis-server /config/redis-slave2.conf &
+    command: redis-server /config/redis-slave2.conf
     
   redis-sentinel1:
     image: redis-base-image
@@ -62,7 +62,7 @@ services:
       - 26379
     tty: true
     privileged: true
-    command: redis-sentinel /etc/redis-sentinel1.conf &  
+    command: redis-sentinel /config/redis-sentinel1.conf  
     
   redis-sentinel2:
     image: redis-base-image
@@ -78,7 +78,7 @@ services:
       - 26379
     tty: true
     privileged: true
-    command: redis-sentinel /etc/redis-sentinel2.conf &  
+    command: redis-sentinel /config/redis-sentinel2.conf  
     
   redis-sentinel3:
     image: redis-base-image
@@ -94,7 +94,7 @@ services:
       - 26379
     tty: true
     privileged: true
-    command: redis-sentinel /etc/redis-sentinel3.conf &  
+    command: redis-sentinel /config/redis-sentinel3.conf  
     
 networks:
   sentinelnetwork:
