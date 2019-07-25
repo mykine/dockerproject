@@ -1,0 +1,156 @@
+version: "3.6"
+services:
+  redis-master10:
+     image: redis-cluster
+     container_name: redis-master10
+     working_dir: /cmdsh
+     environment:
+       - PORT=6110
+     ports:
+       - "6110:6110"
+       - "16110:16110"
+     stdin_open: true
+     networks:
+        redisnetwork10:
+          ipv4_address: 192.168.1.10
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+       
+  redis-slave11:
+     image: redis-cluster
+     container_name: redis-slave11
+     working_dir: /cmdsh
+     environment:
+       - PORT=6111
+     ports:
+       - "6111:6111"
+       - "16111:16111"
+     stdin_open: true
+     networks:
+        redisnetwork10:
+          ipv4_address: 192.168.1.11
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+
+  redis-master20:
+     image: redis-cluster
+     container_name: redis-master20
+     working_dir: /cmdsh
+     environment:
+       - PORT=6220
+     ports:
+       - "6220:6220"
+       - "16220:16220"
+     stdin_open: true
+     networks:
+        redisnetwork20:
+          ipv4_address: 192.168.2.20
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+       
+  redis-slave21:
+     image: redis-cluster
+     container_name: redis-slave21
+     working_dir: /cmdsh
+     environment:
+       - PORT=6221
+     ports:
+       - "6221:6221"
+       - "16221:16221"
+     stdin_open: true
+     networks:
+        redisnetwork20:
+          ipv4_address: 192.168.2.21
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+
+  redis-master30:
+     image: redis-cluster
+     container_name: redis-master30
+     working_dir: /cmdsh
+     environment:
+       - PORT=6330
+     ports:
+       - "6330:6330"
+       - "16330:16330"
+     stdin_open: true
+     networks:
+        redisnetwork30:
+          ipv4_address: 192.168.3.30
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+       
+  redis-slave31:
+     image: redis-cluster
+     container_name: redis-slave31
+     working_dir: /cmdsh
+     environment:
+       - PORT=6331
+     ports:
+       - "6331:6331"
+       - "16331:16331"
+     stdin_open: true
+     networks:
+        redisnetwork30:
+          ipv4_address: 192.168.3.31
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/redis-cluster/config:/config
+       - /usr/docker/mygitprojects/redis-cluster/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - redis.sh
+
+networks:
+  redisnetwork10:
+     driver: bridge
+     ipam:
+       driver: default
+       config:
+          -
+           subnet: 192.168.1.0/24
+  redisnetwork20:
+     driver: bridge
+     ipam:
+       driver: default
+       config:
+          -
+           subnet: 192.168.2.0/24
+  redisnetwork30:
+     driver: bridge
+     ipam:
+       driver: default
+       config:
+          -
+           subnet: 192.168.3.0/24
