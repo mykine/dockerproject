@@ -55,7 +55,7 @@ class RedisClusterHelper
                 $nodeClient = self::$_client->getClientFor($forNodeHost);
                 return $nodeClient;
             }catch (\Exception $e){
-                echo $e->getMessage();die();//
+                echo $e->getMessage();
                 if( $retryLimit <= $retry ){
                     echo $e->getMessage();
 //                    throw new Exception('重试次数过多，连接失败~|'.$forNodeHost);
