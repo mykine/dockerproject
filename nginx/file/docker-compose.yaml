@@ -1,0 +1,80 @@
+version: "3.6"
+services:
+  nginx-loadbalance:
+     image: mynginx
+     container_name: nginx-loadbalance
+     working_dir: /cmdsh
+     environment:
+       - PORT=10080
+     ports:
+       - "10080:80"
+     stdin_open: true
+     networks:
+        nginxnetwork1:
+          ipv4_address: 192.168.5.10
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
+       - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+       
+  nginx-web1:
+     image: mynginx
+     container_name: nginx-web1
+     working_dir: /cmdsh
+     environment:
+       - PORT=10081
+     ports:
+       - "10081:80"
+     stdin_open: true
+     networks:
+        nginxnetwork1:
+          ipv4_address: 192.168.5.11
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
+       - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+  nginx-web2:
+     image: mynginx
+     container_name: nginx-web2
+     working_dir: /cmdsh
+     environment:
+       - PORT=10082
+     ports:
+       - "10082:80"
+     stdin_open: true
+     networks:
+        nginxnetwork1:
+          ipv4_address: 192.168.5.12
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
+       - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+  nginx-web3:
+     image: mynginx
+     container_name: nginx-web3
+     working_dir: /cmdsh
+     environment:
+       - PORT=10083
+     ports:
+       - "10083:80"
+     stdin_open: true
+     networks:
+        nginxnetwork1:
+          ipv4_address: 192.168.5.13
+     tty: true
+     privileged: true
+     volumes: 
+       - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
+       - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+
+networks:
+  nginxnetwork1:
+     driver: bridge
+     ipam:
+       driver: default
+       config:
+          -
+           subnet: 192.168.5.0/24
