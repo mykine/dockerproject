@@ -17,6 +17,9 @@ services:
      volumes: 
        - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
        - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - nginx.sh
        
   nginx-web1:
      image: mynginx
@@ -35,6 +38,9 @@ services:
      volumes: 
        - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
        - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - nginx.sh
   nginx-web2:
      image: mynginx
      container_name: nginx-web2
@@ -52,6 +58,9 @@ services:
      volumes: 
        - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
        - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - nginx.sh
   nginx-web3:
      image: mynginx
      container_name: nginx-web3
@@ -69,6 +78,9 @@ services:
      volumes: 
        - /usr/docker/mygitprojects/nginx/config:/usr/local/nginx/conf/conf.d
        - /usr/docker/mygitprojects/nginx/cmdsh:/cmdsh
+     entrypoint:
+       - /bin/bash
+       - nginx.sh
 
 networks:
   nginxnetwork1:
