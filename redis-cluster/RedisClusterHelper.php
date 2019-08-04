@@ -15,9 +15,9 @@ class RedisClusterHelper
 {
     //（主节点）配置信息
     const hostsConfig = [
-        ['publicIP'=>'47.112.201.233','privateIP'=>'192.168.1.10','port'=>6110],
-        ['publicIP'=>'47.112.201.233','privateIP'=>'192.168.2.20','port'=>6220],
-        ['publicIP'=>'47.112.201.233','privateIP'=>'192.168.3.30','port'=>6330],
+        ['publicIP'=>'38.112.201.233','privateIP'=>'192.168.1.10','port'=>6110],
+        ['publicIP'=>'38.112.201.233','privateIP'=>'192.168.2.20','port'=>6220],
+        ['publicIP'=>'38.112.201.233','privateIP'=>'192.168.3.30','port'=>6330],
     ];
 
     //节点数组
