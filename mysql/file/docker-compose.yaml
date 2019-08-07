@@ -1,0 +1,22 @@
+version: "3.6"
+services:
+  mysql1:
+     image: mysql5.6
+     container_name: mysql1
+     volumes: 
+       - /usr/docker/mygitprojects/mysql/share/data/mysql1:/usr/local/mysql/data  
+     networks:
+       mysqlnet:
+         ipv4_address: 192.168.16.11
+     ports:
+       - "13306:3306"
+     expose:
+       - 3306
+     tty: true
+     privileged: true
+     command: touch ~/play.log.txt && service mysql start && tail -f ~/play.log.txt
+  
+networks:
+  mysqlnet:
+     external:
+      name: mysqlnet
