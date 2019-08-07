@@ -8,7 +8,8 @@
 |  mysql-3 		 |  192.168.5.12|13307-3306 |salve  |
 
 ## ps:注意事项:
-### 1.
+
+### 1.编译安装时Cmake的部分参数说明
 ```
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql          //安装目录
 -DINSTALL_DATADIR=/usr/local/mysql/data          //数据库存放目录
@@ -17,4 +18,26 @@
 -DWITH_EXTRA_CHARSETS=all                        //安装所有扩展字符集
 -DENABLED_LOCAL_INFILE=1                    　　  //允许从本地导入数据
 
+```
+
+### 2.在容器中最好使用/etc/init.d/mysql start,不要用service mysql start，否则会报错：systemctl Failed to get D-Bus connection: Operation not permitted
+
+```
+/etc/init.d/mysql start
+```
+
+### 3.mysql5.6默认没有密码直接登录，登录进入后更改密码步骤如下:
+```
+  use mysql;
+  update user set password = PASSWORD('123456') where user = 'root';
+  flush privileges;
+```
+### 4.开放IP访问用于测试
+```
+   GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION; 
+   flush privileges;
+```
+### 5.远程登录测试
+```
+  mysql -h 192.168.1.111 -P 3306 -u root -p123456
 ```

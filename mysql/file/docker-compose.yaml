@@ -3,8 +3,7 @@ services:
   mysql1:
      image: mysql5.6
      container_name: mysql1
-     volumes: 
-       - /usr/docker/mygitprojects/mysql/share/mysql1/data:/usr/local/mysql/data  
+       
      networks:
        mysqlnet:
          ipv4_address: 192.168.16.11
@@ -14,12 +13,10 @@ services:
        - 3306
      tty: true
      privileged: true
-     command: touch ~/play.log.txt && service mysql start && tail -f ~/play.log.txt
+     command: /etc/init.d/mysql start
   mysql2:
      image: mysql5.6
      container_name: mysql2
-     volumes: 
-       - /usr/docker/mygitprojects/mysql/share/mysql2/data:/usr/local/mysql/data  
      networks:
        mysqlnet:
          ipv4_address: 192.168.16.12
@@ -29,22 +26,20 @@ services:
        - 3306
      tty: true
      privileged: true
-     command: touch ~/play.log.txt && service mysql start && tail -f ~/play.log.txt
+     command: /etc/init.d/mysql start
   mysql3:
      image: mysql5.6
      container_name: mysql3
-     volumes: 
-       - /usr/docker/mygitprojects/mysql/share/mysql2/data:/usr/local/mysql/data  
      networks:
        mysqlnet:
          ipv4_address: 192.168.16.13
      ports:
-       - "13308:3306"
+       - "13309:3306"
      expose:
        - 3306
      tty: true
      privileged: true
-     command: touch ~/play.log.txt && service mysql start && tail -f ~/play.log.txt     
+     command: /etc/init.d/mysql start     
 
 networks:
   mysqlnet:
