@@ -3,7 +3,6 @@ services:
   mysql1:
      image: mysql5.6
      container_name: mysql1
-       
      networks:
        mysqlnet:
          ipv4_address: 192.168.16.11
@@ -13,7 +12,12 @@ services:
        - 3306
      tty: true
      privileged: true
-     command: /etc/init.d/mysql start
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
   mysql2:
      image: mysql5.6
      container_name: mysql2
@@ -26,7 +30,13 @@ services:
        - 3306
      tty: true
      privileged: true
-     command: /etc/init.d/mysql start
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
+     
   mysql3:
      image: mysql5.6
      container_name: mysql3
@@ -39,7 +49,12 @@ services:
        - 3306
      tty: true
      privileged: true
-     command: /etc/init.d/mysql start     
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
 
 networks:
   mysqlnet:
