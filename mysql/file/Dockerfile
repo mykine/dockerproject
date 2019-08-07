@@ -3,6 +3,7 @@ RUN groupadd -r mysql && useradd  -r -g mysql mysql \
 && mkdir /usr/local/mysql \
 && mkdir /usr/local/mysql/data \
 && chown -R mysql:mysql /usr/local/mysql \
+&& chmod -R 755 /usr/local/mysql/data \
 && yum -y install gcc gcc-c++ wget  pcre pcre-devel zlib zlib-devel openssl openssl-devel cmake ncurses-devel bison perl perl-devel perl-Data-Dumper initscripts \
 && wget https://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.45.tar.gz \
 && tar -zxvf mysql-5.6.45.tar.gz \
@@ -28,4 +29,3 @@ RUN groupadd -r mysql && useradd  -r -g mysql mysql \
 && cp support-files/mysql.server /etc/init.d/mysql \
 && ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql \
 && chkconfig mysql on 
-CMD touch ~/play.log.txt && service mysql start && tail -f ~/play.log.txt
