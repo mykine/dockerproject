@@ -1,11 +1,19 @@
-##### 运用docker搭建1台MySQL主节点、2台从节点
+##### 运用docker容器搭建环境演练Mysql架构演变：
+##### 1.初期：单机:Mysql1
+##### 2.中期：一主多从、读写分离:1台MySQL主节点(Mysql1)、2台从节点(Mysql2、Mysql3),
+##### 3.后期：多主多从的集群模式：使用MyCat对Mysql1进行分库分表,数据写入到mysql4、mysql5两个Master节点,然后数据复制到Mysql6、Mysql7两个Slave节点上
 
 #### 设计docker部署方案
 |容器名称| 容器IP |端口映射| nginx服务模式 |
 |--|--|--|--|
-|  mysql-1 |  192.168.5.10|10080-80 |master|
-|  mysql-2 		 |  192.168.5.11|13306-3306 |slave  |
-|  mysql-3 		 |  192.168.5.12|13307-3306 |salve  |
+|  mysql1 		 |  192.168.16.11|13307-80 |master   |
+|  mysql2 		 |  192.168.16.12|13308-3306 |slave  |
+|  mysql3 		 |  192.168.16.13|13309-3306 |salve  |
+|  mycat 		 |  宿主机        |8066  | 中间件      |
+|  mysql4 		 |  192.168.16.14|13310-3306 |master |
+|  mysql5 		 |  192.168.16.15|13311-3306 |master |
+|  mysql6 		 |  192.168.16.16|13312-3306 |salve  |
+|  mysql7 		 |  192.168.16.17|13313-3306 |salve  |
 
 ## ps:注意事项:
 
@@ -38,6 +46,6 @@
   mysql -h 192.168.1.111 -P 3306 -u root -p123456
 ```
 
-### 5.有个问题:想做到挂载mysql的文件到宿主机，但是一般的-v挂载会造成宿主机的空文件夹覆盖mysql的有内容的文件夹丢失文件，mysql启动不了
+### 5.有个问题:想做到挂载mysql的data文件到宿主机，但是一般的-v挂载会造成宿主机的空文件夹覆盖mysql的有内容的文件夹丢失文件，mysql启动不了
 volumes:
        - /usr/docker/mysql/share/mysql1/data:/usr/local/mysql/data

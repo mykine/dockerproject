@@ -1,0 +1,82 @@
+version: "3.6"
+services:
+  mysql4:
+     image: mysql5.6cluster
+     container_name: mysql4
+     networks:
+       mysqlnet:
+         ipv4_address: 192.168.16.14
+     ports:
+       - "13310:3306"
+     expose:
+       - 3306
+     tty: true
+     privileged: true
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
+       
+  mysql5:
+     image: mysql5.6cluster
+     container_name: mysql5
+     networks:
+       mysqlnet:
+         ipv4_address: 192.168.16.15
+     ports:
+       - "13311:3306"
+     expose:
+       - 3306
+     tty: true
+     privileged: true
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
+       
+  mysql6:
+     image: mysql5.6cluster
+     container_name: mysql6
+     networks:
+       mysqlnet:
+         ipv4_address: 192.168.16.16
+     ports:
+       - "13312:3306"
+     expose:
+       - 3306
+     tty: true
+     privileged: true
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
+       
+  mysql7:
+     image: mysql5.6cluster
+     container_name: mysql7
+     networks:
+       mysqlnet:
+         ipv4_address: 192.168.16.17
+     ports:
+       - "13313:3306"
+     expose:
+       - 3306
+     tty: true
+     privileged: true
+     volumes:
+       - /usr/docker/mygitprojects/mysql/cmdsh:/cmdsh
+     working_dir: /cmdsh
+     entrypoint:
+       - /bin/bash
+       - mysql.sh
+
+networks:
+  mysqlnet:
+     external:
+      name: mysqlnet
