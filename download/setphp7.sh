@@ -63,7 +63,7 @@ cp php.ini-production /usr/local/php/etc/php.ini
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 chmod 755 /etc/init.d/php-fpm
 chkconfig --add php-fpm
-service php-fpm start
+php-fpm -c /usr/local/php/etc/php.ini
 echo "安装结束"
 echo "请手动更改/usr/local/php/etc/php-fpm.conf的pid参数为为pid = /usr/local/php/var/run/php-fpm.pid "
 php -v
