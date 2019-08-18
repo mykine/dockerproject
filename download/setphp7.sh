@@ -60,11 +60,11 @@ ln -s  /usr/local/php/sbin/php-fpm /usr/local/bin/php-fpm
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
 cp php.ini-production /usr/local/php/etc/php.ini
-echo "pid = /usr/local/php/var/run/php-fpm.pid" >> /usr/local/php/etc/php-fpm.conf
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 chmod 755 /etc/init.d/php-fpm
 chkconfig --add php-fpm
 service php-fpm start
 echo "安装结束"
+echo "请手动更改/usr/local/php/etc/php-fpm.conf的pid参数为为pid = /usr/local/php/var/run/php-fpm.pid "
 php -v
 
