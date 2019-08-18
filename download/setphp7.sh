@@ -18,7 +18,7 @@ echo "configure..."
 --with-fpm-user=www-data \
 --with-fpm-group=www-data \
 --disable-fileinfo \
---with-config-file-path=/usr/local/php/etc-with-libxml-dir=/usr \
+--with-config-file-path=/usr/local/php/etc \
 --with-mhash \
 --with-mysqli=shared,mysqlnd \
 --disable-debug \
